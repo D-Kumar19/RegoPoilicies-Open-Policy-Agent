@@ -1,0 +1,26 @@
+tests:
+  - name: "Seccomp profile should be set to RuntimeDefault"
+    type: "conftest"
+    data:
+      policyPaths:
+        - "./seccomp_istio_disabled.rego"
+        - "./utils.rego"
+      data:
+        parameters:
+          allowedProfiles:
+            - "RuntimeDefault"
+
+  - name: "Seccomp profile should be set to RuntimeDefault at pod level and not set at container level when istio enabled"
+    type: "conftest"
+    data:
+      policyPaths:
+        - "./seccomp_istio_enabled.rego"
+        - "./utils.rego"
+      data:
+        parameters:
+          allowedProfiles:
+            istio_enabled:
+              podspec:
+                - "RuntimeDefault"
+              containers:
+                -
