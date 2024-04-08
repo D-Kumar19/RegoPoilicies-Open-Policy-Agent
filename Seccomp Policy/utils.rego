@@ -9,6 +9,7 @@ is_workload{
     input.kind in ["DaemonSet", "Deployment", "Job", "Pod", "StatefulSet", "CronJob", "ReplicaSet", "ReplicationController"]
 }
 
+
 #####################################################################
 # Functions for getting all the containers:
 #####################################################################
@@ -57,4 +58,56 @@ getCronJobContainers[c] {
 }
 getCronJobContainers[c] {
     c := input.spec.jobTemplate.spec.template.spec.ephemeralContainers[_]
+}
+
+
+#####################################################################
+# Functions for getting all the profiles having securityContext:
+#####################################################################
+securitycontext_pod {
+    input.spec.securityContext.seccompProfile
+}
+else {
+    input.spec.template.spec.securityContext.seccompProfile
+}
+else {
+    input.spec.jobTemplate.spec.template.spec.securityContext.seccompProfile
+}
+
+securitycontext_container(container) {
+    container.securityContext.seccompProfile
+}
+
+get_pod_profiles(container) = {"profile": profile, "location": location} {
+    not securitycontext_container(container)
+    profile := input.spec.securityContext.seccompProfile.type
+    location := "Pod securityContext"
+}
+
+get_container_profiles(container) = {"profile": profile, "location": location} {
+    not securitycontext_container(container)
+    profile := input.spec.template.spec.securityContext.seccompProfile.type
+    location := "Workload Controller securityContext"
+}
+else = {"profile": profile, "location": location} {
+    not securitycontext_container(container)
+    profile := input.spec.jobTemplate.spec.template.securityContext.seccompProfile.type
+    location := "CrobJob securityContext"
+}
+else = {"profile": profile, "location": location} {
+    securitycontext_container(container)
+    profile := container.securityContext.seccompProfile.type
+    location := "Container securityContext"
+}
+else = {"profile": "not configured", "location": "No explicit profile found"} {
+    not securitycontext_pod
+    not securitycontext_container(container)
+}
+
+
+#####################################################################
+# Functions for compare used profile and allowed profile:
+#####################################################################
+allowed_profile(profile, allowed) {
+    profile == allowed[_]
 }
