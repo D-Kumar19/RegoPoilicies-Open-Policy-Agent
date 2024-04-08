@@ -29,13 +29,13 @@ deny[msg] {
 
 # Gets the pod profiles when istio is enabled
 get_allowed_pod_profiles[allowed] {
-    allowed := data.parameters.allowedProfiles.istioEnabled.podspec[_]
+    allowed := data.parameters.allowedProfiles.istio_enabled.podspec[_]
 }
 
 
 # Gets the container profiles when istio is enabled
 get_allowed_container_profiles[allowed] {
-    allowed := data.parameters.allowedProfiles.istioEnabled.containers[_]
+    allowed := data.parameters.allowedProfiles.istio_enabled.containers[_]
 }
 
 
