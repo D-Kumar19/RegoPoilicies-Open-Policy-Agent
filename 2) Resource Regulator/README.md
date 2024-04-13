@@ -46,10 +46,10 @@ resources:
 Utilize the Conftest tool to execute the policy tests defined in your configuration files:
 
 ```bash
-conftest test -p ./ResourceBlockRegulator.rego -p utils.rego <template_output>
-conftest test -p ./RegulateCPU.rego -p utils.rego <template_output>
-conftest test -p ./RegulateMemory.rego -p utils.rego <template_output>
-conftest test -p ./RegulateEphemeralStorage.rego -p utils.rego <template_output>
+conftest test -p ./ResourceBlockRegulator.rego -p ../utils/utils.rego <template_output>
+conftest test -p ./RegulateCPU.rego -p ../utils/utils.rego <template_output>
+conftest test -p ./RegulateMemory.rego -p ../utils/utils.rego <template_output>
+conftest test -p ./RegulateEphemeralStorage.rego -p ../utils/utils.rego <template_output>
 ```
 
 ## Code Snippets 📝
