@@ -1,0 +1,60 @@
+tests:
+  - name: "Validating the configuration of cpu/memory/ephemeral-storage resources in the pod"
+    TestParams:
+      - resources:
+          requests:
+            cpu: 123Mi
+            memory: 345Mi
+            ephemeral-storage: 123Mi
+          limits:
+            cpu:
+            memory: 678Mi
+            ephemeral-storage: 123Mi
+    valuesYaml:
+      resources:
+        requests:
+          cpu: "$.TestParams.resources.requests.cpu"
+          memory: "$.TestParams.resources.requests.memory"
+          ephemeral-storage: "$.TestParams.resources.requests.ephemeral-storage"
+        limits:
+          cpu: "$.TestParams.resources.limits.cpu"
+          memory: "$.TestParams.resources.limits.memory"
+          ephemeral-storage: "$.TestParams.resources.limits.ephemeral-storage"
+    checks:
+      - name: "Validating the configuration of cpu/memory/ephemeral-storage resources in the pod"
+        type: "conftest"
+        data:
+          policyPaths:
+            - "./ResourceBlockRegulator.rego"
+            - "./RegulateCPU.rego"
+            - "./RegulateMemory.rego"
+            - "./RegulateEphemeralStorage.rego"
+            - "../utils/utils.rego"
+          data:
+            requests_cpu: "$.TestParams.resources.requests.cpu"
+            requests_memory: "$.TestParams.resources.requests.memory"
+            requests_ephemeral_storage: "$.TestParams.resources.requests.ephemeral-storage"
+            limits_cpu: "$.TestParams.resources.limits.cpu"
+            limits_memory: "$.TestParams.resources.limits.memory"
+            limits_ephemeral_storage: "$.TestParams.resources.limits.ephemeral-storage"
+
+
+  - name: "Validating if resources.limits.cpu is set by default"
+    checks:
+      - name: "Validating if resources.limits.cpu is set by default"
+        type: "conftest"
+        data:
+          policyPaths:
+            - "./ResourceBlockRegulator.rego"
+            - "./RegulateCPU.rego"
+            - "../utils/utils.rego"
+
+  - name: "Validating if same ephemeral-storage is used for requests and limits"
+    checks:
+      - name: "Validating if same ephemeral-storage is used for requests and limits"
+        type: "conftest"
+        data:
+          policyPaths:
+            - "./ResourceBlockRegulator.rego"
+            - "./RegulateEphemeralStorage.rego"
+            - "../utils/utils.rego"

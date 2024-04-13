@@ -10,13 +10,17 @@ Welcome to the Rego Policy Enforcer for Kubernetes Seccomp Profiles, a cutting-e
 - **Extensive Kubernetes Workload Support**: Compatible with a wide range of Kubernetes workload kinds, including Deployments, DaemonSets, StatefulSets, and more.
 - **Comprehensive Testing**: Includes a YAML test file for verifying policy behavior against different scenarios, ensuring robustness and reliability.
 
+## UML Diagram 🌟
+
+![Seccomp Profile Validation Diagram](./seccomp_diagram.png "Seccomp Profile Validation Diagram")
+
 ## Installation 🚀
 
 To use this project, clone it into your local environment or directly into your cluster's management node:
 
 ```bash
 git clone https://github.com/D-Kumar19/RegoPoilicies-Open-Policy-Agent.git
-cd RegoPoilicies-Open-Policy-Agent/Seccomp\ Policy
+cd .\RegoPoilicies-Open-Policy-Agent\1) Seccomp Policy\'
 ```
 
 ## Usage 🛠️
@@ -32,7 +36,7 @@ tests:
     data:
       policyPaths:
         - "./seccomp_istio_disabled.rego"
-        - "./utils.rego"
+        - "../utils/utils.rego"
       data:
         parameters:
           allowedProfiles:
@@ -44,8 +48,8 @@ tests:
 Use the OPA command-line tool to execute the policy tests defined in `Seccomp.yaml`:
 
 ```bash
-conftest test -p seccomp_istio_disabled.rego -p utils.rego <template_output>
-conftest test -p seccomp_istio_enabled.rego -p utils.rego <template_output>
+conftest test -p ./seccomp_istio_disabled.rego -p ../utils/utils.rego <template_output>
+conftest test -p ./seccomp_istio_enabled.rego -p ../utils/utils.rego <template_output>
 ```
 
 ## Contributing 🤝
