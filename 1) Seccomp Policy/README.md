@@ -20,7 +20,7 @@ To use this project, clone it into your local environment or directly into your 
 
 ```bash
 git clone https://github.com/D-Kumar19/RegoPoilicies-Open-Policy-Agent.git
-cd RegoPoilicies-Open-Policy-Agent/Seccomp\ Policy
+cd .\RegoPoilicies-Open-Policy-Agent\1) Seccomp Policy\'
 ```
 
 ## Usage 🛠️
