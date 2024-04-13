@@ -7,7 +7,7 @@ Welcome to the Rego Policies Suite, a comprehensive collection of projects dedic
 This suite consists of multiple projects, each tailored to enforce different aspects of Kubernetes security policies. Below is an overview of the projects currently available or in development:
 
 1. **Seccomp Policy Enforcer**: Automates the enforcement of Seccomp profiles for Kubernetes workloads, ensuring that only approved profiles are applied to enhance the security posture of your clusters.
-2. **(In Development)**
+2. **Resources Regulator**: Automates the enforcement of resource quotas and limit ranges, promoting optimal performance and stability across your Kubernetes workloads.
 3. **(In Development)**
 4. **(In Development)**
 5. **(In Development)**
