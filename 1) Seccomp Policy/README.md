@@ -36,7 +36,7 @@ tests:
     data:
       policyPaths:
         - "./seccomp_istio_disabled.rego"
-        - "./utils.rego"
+        - "../utils/utils.rego"
       data:
         parameters:
           allowedProfiles:
@@ -48,8 +48,8 @@ tests:
 Use the OPA command-line tool to execute the policy tests defined in `Seccomp.yaml`:
 
 ```bash
-conftest test -p seccomp_istio_disabled.rego -p utils.rego <template_output>
-conftest test -p seccomp_istio_enabled.rego -p utils.rego <template_output>
+conftest test -p ./seccomp_istio_disabled.rego -p ../utils/utils.rego <template_output>
+conftest test -p ./seccomp_istio_enabled.rego -p ../utils/utils.rego <template_output>
 ```
 
 ## Contributing 🤝
