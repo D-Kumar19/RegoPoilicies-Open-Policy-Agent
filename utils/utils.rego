@@ -160,7 +160,7 @@ else = suffix {
     suffix := last_two_chars
 }
 else = "" {
-    is_string(mem)
+    is_string(memory)
 }
 
 

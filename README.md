@@ -8,7 +8,7 @@ This suite consists of multiple projects, each tailored to enforce different asp
 
 1. **Seccomp Policy Enforcer**: Automates the enforcement of Seccomp profiles for Kubernetes workloads, ensuring that only approved profiles are applied to enhance the security posture of your clusters.
 2. **Resources Regulator**: Automates the enforcement of resource quotas and limit ranges, promoting optimal performance and stability across your Kubernetes workloads.
-3. **(In Development)**
+3. **Name Guard**: Automates the enforcement of name standards, ensuring that pod and container names adhere to Kubernetes best practices and custom organizational rules.
 4. **(In Development)**
 5. **(In Development)**
 
@@ -17,7 +17,7 @@ This suite consists of multiple projects, each tailored to enforce different asp
 To get started with any of the projects in the Rego Policies Suite, you can clone this repository to your local environment or directly into your cluster's management node:
 
 ```bash
-git clone git clone https://github.com/D-Kumar19/RegoPoilicies-Open-Policy-Agent.git
+git clone https://github.com/D-Kumar19/RegoPoilicies-Open-Policy-Agent.git
 cd RegoPoilicies-Open-Policy-Agent
 ```
 
