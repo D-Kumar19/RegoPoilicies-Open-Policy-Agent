@@ -1,0 +1,45 @@
+tests:
+  - name: "Validating names of kubernetes workloads and containers"
+    checks:
+      - name: "Validating names of kubernetes workloads and containers"
+        type: "conftest"
+        data:
+          policyPaths:
+            - "./PodNameGuard.rego"
+            - "./ContainerNameGuard.rego"
+            - "../utils/utils.rego"
+
+
+  - name: "Pod name should start with overridden pod name if provided"
+    TestParams:
+      - podNamePrefix: "myWorkloadContainer"
+    valuesYaml:
+      global:
+        podNamePrefix: "$.TestParams.containerNamePrefix"
+    checks:
+      - name: "Pod name should start with overridden pod name if provided"
+        type: "conftest"
+        data:
+          policyPaths:
+            - "./PodNameGuard.rego"
+            - "../utils/utils.rego"
+          data:
+            podNamePrefix: "$.TestParams.containerNamePrefix"
+
+
+  - name: "Container name should start with overridden container name if provided"
+    TestParams:
+      - containerNamePrefix: "myWorkloadContainer"
+    valuesYaml:
+      global:
+        containerNamePrefix: "$.TestParams.containerNamePrefix"
+    checks:
+      - name: "Container name should start with overridden container name if provided"
+        type: "conftest"
+        data:
+          policyPaths:
+            - "./ContainerNameGuard.rego"
+            - "../utils/utils.rego"
+          data:
+            containerNamePrefix: "$.TestParams.containerNamePrefix"
+
